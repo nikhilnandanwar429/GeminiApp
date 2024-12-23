@@ -95,6 +95,14 @@ function ChatBox() {
                             </div>
                         ))
                     }
+                    {
+                        prompt && <div className="w-full p-2 rounded bg-green-100 ">
+                        {/* <MarkdownViewer content={prompt} /> */}
+
+
+                        <NewMarkdown content={prompt} />
+                    </div>
+                    }
                     {responseText && <div className="w-full p-2 rounded bg-green-100 ">
                         {/* <MarkdownViewer content={responseText} /> */}
 
