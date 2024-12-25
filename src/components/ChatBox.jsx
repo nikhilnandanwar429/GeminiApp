@@ -81,27 +81,27 @@ function ChatBox() {
         <>
             <div className="w-5/6 h-dvh pt-36">
 
-            <div className="w-full h-full overflow-y-auto flex flex-col gap-4 bg-white px-4 py-2">
+                <div className="w-full h-full overflow-y-auto flex flex-col gap-4 bg-white px-4 py-2">
 
-                
+
                     {
                         prevChat &&
                         geminiHistory.map((chat, index) => (
                             <div key={index} className="w-full ">
                                 <div className={`p-2 rounded ${chat.role === "user" ? "bg-blue-100" : "bg-green-100"}`}>
                                     {chat.role}
-                                <NewMarkdown content={chat.parts[0].text}  />
+                                    <NewMarkdown content={chat.parts[0].text} />
                                 </div>
                             </div>
                         ))
                     }
                     {
                         prompt && <div className="w-full p-2 rounded bg-green-100 ">
-                        {/* <MarkdownViewer content={prompt} /> */}
+                            {/* <MarkdownViewer content={prompt} /> */}
 
 
-                        <NewMarkdown content={prompt} />
-                    </div>
+                            <NewMarkdown content={prompt} />
+                        </div>
                     }
                     {responseText && <div className="w-full p-2 rounded bg-green-100 ">
                         {/* <MarkdownViewer content={responseText} /> */}
@@ -132,7 +132,7 @@ function ChatBox() {
                     className='flex items-center justify-center md:p-2 md:w-1/12 h-full w-5'
                 >
                     <img
-                        src="src/assets/send1.png"
+                        src="https://drive.google.com/thumbnail?id=1QQcpVvaTYbbI5RbvyJAqixMKp-lKBp-C"
                         alt="Send"
                         className="filter contrast-200 blur-0 w-[4vw] h-[4vw]"
                     />
