@@ -58,7 +58,7 @@ const NewMarkdown = ({ content }) => {
                                     margin: 0,
                                     padding: '1rem',
                                     paddingTop: '2rem',
-                                    background: 'transparent',
+                                    // background: 'transparent',
                                     border: '0.1em solid black'
                                 }}
                             >
