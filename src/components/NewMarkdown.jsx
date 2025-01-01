@@ -24,6 +24,7 @@ const NewMarkdown = ({ content }) => {
 
     return (
         <ReactMarkdown
+        className='markdown-render'
             rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]}
             children={content}

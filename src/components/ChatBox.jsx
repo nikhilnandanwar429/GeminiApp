@@ -95,13 +95,9 @@ function ChatBox() {
 									}`}
 								>
 									{chat.role}
-									{chat.role === "user" ? <p>
-										{chat.parts[0].text}
-									</p> : 
-										<NewMarkdown
-											content={chat.parts[0].text}
-										/>
-									}
+									<NewMarkdown
+										content={chat.parts[0].text}
+									/> 
 								</div>
 							</div>
 						))}
