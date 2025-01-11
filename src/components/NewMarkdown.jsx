@@ -37,9 +37,9 @@ const NewMarkdown = ({ content }) => {
                     return !inline && language ? (
                         <div className="relative mb-6 rounded-lg overflow-hidden bg-[#1e1e2f] shadow-md border border-[#2d2d3d]">
                             {/* Language Label */}
-                            <div className="absolute top-0 left-0 bg-[#2d2d3d] text-gray-300 text-sm font-medium py-1 px-3 rounded-tr-lg">
+                            {/* <div className="absolute top-0 left-0 bg-[#2d2d3d] text-gray-300 text-sm font-medium py-1 px-3 rounded-tr-lg">
                                 {language.toUpperCase()}
-                            </div>
+                            </div> */}
                             {/* Copy Button */}
                             <button
                                 aria-label="Copy code to clipboard"
