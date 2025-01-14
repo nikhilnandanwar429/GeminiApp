@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { model } from "../gemini/gemini.config.js";
 import NewMarkdown from "./NewMarkdown.jsx";
 import MarkdownViewer from './MarkdownViewer.jsx'
+import ChatLoadingAnimation from "./ChatLoadingAnimation.jsx";
 
 function ChatBox() {
 	//TO STORE PROMPT STATE ENTERED BY USER
@@ -9,7 +10,7 @@ function ChatBox() {
 
 	//TO STORE PREVIOUS CHAT
 	const [geminiHistory, setGeminiHistory] = useState([]);
-	const [prevChat, setprevChat] = useState(false);
+	const [prevChat, setPrevChat] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const chatContainerRef = useRef(null);
 
@@ -32,7 +33,7 @@ function ChatBox() {
 				const parsedHistory = JSON.parse(savedHistory);
 				if (Array.isArray(parsedHistory) && parsedHistory.length > 0) {
 					setGeminiHistory(parsedHistory);
-					setprevChat(true);
+					setPrevChat(true);
 				}
 			} catch (error) {
 				console.error("Error parsing chat history:", error);
@@ -59,12 +60,12 @@ function ChatBox() {
 
 		setPrompt("");
 		setIsLoading(true);
-		
+
 		// Update history with user message first
 		const updatedHistory = [...geminiHistory, userMessage];
 		setGeminiHistory(updatedHistory);
 		saveToLocalStorage(updatedHistory);
-		setprevChat(true);
+		setPrevChat(true);
 
 		//GIVE PREVIOUS CHAT TO MODEL
 		const chatSession = model.startChat({
@@ -98,7 +99,7 @@ function ChatBox() {
 
 	const clearChat = () => {
 		setGeminiHistory([]);
-		setprevChat(false);
+		setPrevChat(false);
 		localStorage.removeItem("GeminiHistory");
 	};
 
@@ -113,17 +114,16 @@ function ChatBox() {
 
 	return (
 		<div className="flex flex-col h-dvh">
-			<div className="flex-1 overflow-hidden pt-16"> 
-				<div ref={chatContainerRef} className="h-full overflow-y-auto px-4 py-2 scroll-smooth">
+			<div className="flex-1 flex justify-center overflow-hidden pt-16">
+				<div ref={chatContainerRef} className="w-9/12 h-full overflow-y-auto px-4 py-2 scroll-smooth">
 					{prevChat &&
 						geminiHistory.map((chat, index) => (
 							<div key={index} className={`w-full animate-fadeIn flex ${chat.role === "user" ? "justify-end" : "justify-start"} mb-4`}>
 								<div
-									className={`p-4 rounded-lg shadow-lg ${
-										chat.role === "user"
-											? "bg-blue-600 text-white max-w-[80%] break-words"
-											: "bg-gray-700 text-white max-w-[80%] break-words"
-									}`}
+									className={`p-4 rounded-lg shadow-lg ${chat.role === "user"
+										? "bg-blue-600 text-white max-w-[80%] break-words"
+										: "bg-gray-700 text-white max-w-[80%] break-words"
+										}`}
 									style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}
 								>
 									<div className="font-medium mb-2 text-sm opacity-80">
@@ -135,20 +135,7 @@ function ChatBox() {
 								</div>
 							</div>
 						))}
-					{isLoading && (
-						<div className="w-full animate-fadeIn flex justify-start mb-4">
-							<div className="p-4 rounded-lg shadow-lg bg-gray-700 text-white max-w-[80%]">
-								<div className="font-medium mb-2 text-sm opacity-80">
-									AI Assistant
-								</div>
-								<div className="flex items-center space-x-2">
-									<div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }}></div>
-									<div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-									<div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
-								</div>
-							</div>
-						</div>
-					)}
+					{isLoading && <ChatLoadingAnimation />}
 				</div>
 			</div>
 
@@ -170,7 +157,7 @@ function ChatBox() {
 							rows="3"
 							style={{ minHeight: "60px", maxHeight: "150px" }}
 						/>
-						<div className="absolute right-2 bottom-2 flex gap-2">
+						<div className="absolute right-2 bottom-9 flex gap-2">
 							<button
 								type="submit"
 								disabled={!prompt.trim()}
