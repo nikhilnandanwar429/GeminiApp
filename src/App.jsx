@@ -5,24 +5,11 @@ import Navbar from './components/Navbar'
 import ChatBox from './components/ChatBox'
 
 function App() {
-  const [prompt, setPrompt] = useState('')
-
-  const promptSubmit = () => {
-    setPrompt('')
-  }
-  const check = (e) => {
-
-    if ((e.code === "Enter" || e.code === "NumpadEnter") && !e.shiftKey) {
-      console.log("Enter pressed", e);
-      promptSubmit(e);
-    }
-
-  }
 
   return (
     <>
       <Navbar />
-      <div className='flex h-dvh'>
+      <div className='w-full flex h-dvh'>
         <div className="w-1/6 bg-gray-800 md:flex flex-col p-4 hidden">
           <h1 className="text-white font-semibold text-xl mb-4">Chat History</h1>
           <div className="flex-1 overflow-y-auto">

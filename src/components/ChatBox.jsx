@@ -44,6 +44,7 @@ function ChatBox() {
 
 	const saveToLocalStorage = (history) => {
 		try {
+			localStorage.removeItem("GeminiHistory");
 			localStorage.setItem("GeminiHistory", JSON.stringify(history));
 		} catch (error) {
 			console.error("Error saving to local storage:", error);
@@ -64,7 +65,7 @@ function ChatBox() {
 		// Update history with user message first
 		const updatedHistory = [...geminiHistory, userMessage];
 		setGeminiHistory(updatedHistory);
-		saveToLocalStorage(updatedHistory);
+		
 		setPrevChat(true);
 
 		//GIVE PREVIOUS CHAT TO MODEL
@@ -113,9 +114,9 @@ function ChatBox() {
 	};
 
 	return (
-		<div className="flex flex-col h-dvh">
-			<div className="flex-1 flex justify-center overflow-hidden pt-16">
-				<div ref={chatContainerRef} className="w-9/12 h-full overflow-y-auto px-4 py-2 scroll-smooth">
+		<div className="w-full flex flex-col h-dvh">
+			<div className="w-full flex-1 flex justify-center overflow-hidden pt-16">
+				<div ref={chatContainerRef} className="w-full md:w-9/12 h-full overflow-y-auto px-4 py-2 scroll-smooth">
 					{prevChat &&
 						geminiHistory.map((chat, index) => (
 							<div key={index} className={`w-full animate-fadeIn flex ${chat.role === "user" ? "justify-end" : "justify-start"} mb-4`}>
