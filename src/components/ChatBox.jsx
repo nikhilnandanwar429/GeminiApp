@@ -44,7 +44,6 @@ function ChatBox() {
 
 	const saveToLocalStorage = (history) => {
 		try {
-			localStorage.removeItem("GeminiHistory");
 			localStorage.setItem("GeminiHistory", JSON.stringify(history));
 		} catch (error) {
 			console.error("Error saving to local storage:", error);
@@ -62,35 +61,36 @@ function ChatBox() {
 		setPrompt("");
 		setIsLoading(true);
 
-		// Update history with user message first
+		// Add user message to history
 		const updatedHistory = [...geminiHistory, userMessage];
 		setGeminiHistory(updatedHistory);
-		
 		setPrevChat(true);
 
-		//GIVE PREVIOUS CHAT TO MODEL
+		// Create chat session with updated history
 		const chatSession = model.startChat({
-			history: updatedHistory.length > 1 ? updatedHistory : [],
+			history: updatedHistory.slice(0, -1),
 		});
 
 		try {
 			const result = await chatSession.sendMessage(prompt);
 			const text = await result.response.text();
 
-			// Update history with AI response
-			const finalHistory = [...updatedHistory, {
+			// Add AI response to history
+			const newResponse = {
 				role: "model",
 				parts: [{ text: text }],
-			}];
+			};
+
+			const finalHistory = [...updatedHistory, newResponse];
 			setGeminiHistory(finalHistory);
 			saveToLocalStorage(finalHistory);
 		} catch (error) {
 			console.error("Error in chat:", error);
-			// Add error message to chat
-			const finalHistory = [...updatedHistory, {
+			const errorResponse = {
 				role: "model",
 				parts: [{ text: "Sorry, there was an error processing your request." }],
-			}];
+			};
+			const finalHistory = [...updatedHistory, errorResponse];
 			setGeminiHistory(finalHistory);
 			saveToLocalStorage(finalHistory);
 		} finally {
@@ -107,8 +107,6 @@ function ChatBox() {
 	const check = (e) => {
 		if ((e.code === "Enter" || e.code === "NumpadEnter") && !e.shiftKey) {
 			e.preventDefault();
-
-			//CALL FUNCTION TO GET RESPONSE
 			promptSubmit();
 		}
 	};
@@ -140,7 +138,7 @@ function ChatBox() {
 				</div>
 			</div>
 
-			<div className="w-full bg-gray-900 border-t border-gray-700 p-4">
+			<div className="w-full bg-gray-900 border-t border-gray-700 p-2">
 				<form
 					onKeyDown={check}
 					onSubmit={(e) => {
@@ -170,7 +168,7 @@ function ChatBox() {
 							</button>
 						</div>
 					</div>
-					<p className="text-xs text-gray-400 text-center mt-2">
+					<p className="text-xs text-gray-400 text-center mt-1">
 						Press Shift+Enter for a new line
 					</p>
 				</form>
