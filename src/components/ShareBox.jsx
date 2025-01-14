@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import dbConnect from "../db/dbConnect";
 
 export default function ShareBox({ shareLink }) {
 
