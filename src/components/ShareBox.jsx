@@ -3,14 +3,17 @@ import React, { useRef, useState } from "react";
 export default function ShareBox({ shareLink }) {
 
     const passwordRef = useRef(null);
-    const [sharableLink, setSharableLink] = useState('');
+    const [sharableLink, setSharableLink] = useState('Coming soon ...');
 
     const copyLink = () => {
         passwordRef.current?.select();
         window.navigator.clipboard.writeText(passwordRef.current.value);
     }
 
-   
+   const generateSharableLink = () => {
+
+   }
+
     return (
         <div className="z-10 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
             <div className="bg-white rounded-lg shadow-lg p-6 w-80">
