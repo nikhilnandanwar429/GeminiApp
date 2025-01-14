@@ -3,11 +3,15 @@ import ShareBox from "./ShareBox";
 
 function Navbar() {
 
-    const [isShare, setIsShare] = useState(true);
+    const [isShare, setIsShare] = useState(false);
 
     const clearLocalStorage = () => {
         localStorage.removeItem("GeminiHistory");
         window.location.reload();
+    };
+
+    const shareLink = (setIsShare) => {
+        setIsShare((prev) => !prev);
     };
 
     return (
@@ -41,7 +45,7 @@ function Navbar() {
                 </div>
             </nav>
             {
-                isShare && <ShareBox isShare={isShare}/>
+                isShare && <ShareBox shareLink={() => setIsShare(false)} />
             }
         </>
     );
