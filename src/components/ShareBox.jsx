@@ -11,10 +11,7 @@ export default function ShareBox({ shareLink }) {
         window.navigator.clipboard.writeText(passwordRef.current.value);
     }
 
-    const generateSharableLink = async() => {
-        dbConnect();
-    }
-
+   
     return (
         <div className="z-10 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
             <div className="bg-white rounded-lg shadow-lg p-6 w-80">
