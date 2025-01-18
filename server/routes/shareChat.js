@@ -4,7 +4,7 @@ import { getChatFromDB } from "../controllers/getChatFromDB.js";
 
 const router = Router();
 
-router.get('/', saveChatToDB);
-router.post("/:id", getChatFromDB);
+router.post('/', saveChatToDB);
+router.get("/:id", getChatFromDB);
 
 export default router;

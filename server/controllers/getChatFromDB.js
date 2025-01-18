@@ -2,7 +2,7 @@ import Chat from "../models/chat.model.js";
 
 const getChatFromDB = async(req, res) => {
     try {
-        const id = await req.params();
+        const id = req.params.id;
         console.log(id);
 
         const chat = await Chat.findById(id);
@@ -16,8 +16,7 @@ const getChatFromDB = async(req, res) => {
         })
         
     } catch (error) {
-        console.log("ERROR at getDataFromDB : ", error);
-        
+        console.log("ERROR at getDataFromDB : ", error);        
         return res.status(404).json({
             message: "Cannot get data"
         })

@@ -1,17 +1,29 @@
 import React, { useRef, useState } from "react";
+import axios from 'axios';
 
 export default function ShareBox({ shareLink }) {
 
     const passwordRef = useRef(null);
-    const [sharableLink, setSharableLink] = useState('Coming soon ...');
+    const [sharableLink, setSharableLink] = useState('');
 
     const copyLink = () => {
         passwordRef.current?.select();
         window.navigator.clipboard.writeText(passwordRef.current.value);
     }
 
-   const generateSharableLink = () => {
-
+   const generateSharableLink = async() => {
+    try {
+        const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api', {
+            chat: window.localStorage.getItem("GeminiHistory")
+        });
+        console.log("Link generated : ", response);
+        if (response.data.success) {
+            setSharableLink(`${window.location.origin}/${response.data.data.id}`);
+        }
+        
+    } catch (error) {
+        console.log("ERROR at ShareBox.jsx : ", error);
+    }    
    }
 
     return (
