@@ -23,12 +23,12 @@ The project is divided into two main parts:
 ## Tech Stack
 
 ### Frontend
-- **[React](https://react.dev/)**: ^18.3.1 - UI library
+- **[React](https://react.dev/)**: UI library
 - **[Vite](https://vitejs.dev/)**: Build tool and development server
-- **[React Router DOM](https://reactrouter.com/)**: ^7.1.3 - For client-side routing
-- **[@google/generative-ai](https://ai.google.dev/docs)**: ^0.21.0 - Google's Gemini AI API client
-- **[React Markdown](https://github.com/remarkjs/react-markdown)**: ^9.0.1 - For rendering markdown content
-- **[Axios](https://axios-http.com/)**: ^1.7.9 - HTTP client for API requests
+- **[React Router DOM](https://reactrouter.com/)**: For client-side routing
+- **[@google/generative-ai](https://ai.google.dev/docs)**: Google's Gemini AI API client
+- **[React Markdown](https://github.com/remarkjs/react-markdown)**: For rendering markdown content
+- **[Axios](https://axios-http.com/)**: HTTP client for API requests
 - **Additional UI Packages**:
   - [react-syntax-highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter)
   - [rehype-highlight](https://github.com/rehypejs/rehype-highlight)
@@ -36,11 +36,11 @@ The project is divided into two main parts:
   - [remark-gfm](https://github.com/remarkjs/remark-gfm)
 
 ### Backend
-- **[Node.js](https://nodejs.org/)** with **[Express.js](https://expressjs.com/)**: ^4.21.2 - Server framework
-- **[MongoDB](https://www.mongodb.com/)** with **[Mongoose](https://mongoosejs.com/)**: ^8.9.5 - Database and ODM
-- **[CORS](https://github.com/expressjs/cors)**: ^2.8.5 - Cross-Origin Resource Sharing middleware
-- **[dotenv](https://github.com/motdotla/dotenv)**: ^16.4.7 - Environment variable management
-- **[nodemon](https://nodemon.io/)**: ^3.1.9 - Development server with auto-reload
+- **[Node.js](https://nodejs.org/)** with **[Express.js](https://expressjs.com/)**: Server framework
+- **[MongoDB](https://www.mongodb.com/)** with **[Mongoose](https://mongoosejs.com/)**: Database and ODM
+- **[CORS](https://github.com/expressjs/cors)**: Cross-Origin Resource Sharing middleware
+- **[dotenv](https://github.com/motdotla/dotenv)**: Environment variable management
+- **[nodemon](https://nodemon.io/)**: Development server with auto-reload
 
 
 ## Author
