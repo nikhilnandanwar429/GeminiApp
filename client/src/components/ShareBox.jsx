@@ -5,26 +5,30 @@ export default function ShareBox({ shareLink }) {
 
     const passwordRef = useRef(null);
     const [sharableLink, setSharableLink] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const copyLink = () => {
         passwordRef.current?.select();
         window.navigator.clipboard.writeText(passwordRef.current.value);
     }
 
-   const generateSharableLink = async() => {
-    try {
-        const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api', {
-            chat: window.localStorage.getItem("GeminiHistory")
-        });
-        // console.log("Link generated : ", response);
-        if (response.data.success) {
-            setSharableLink(`${window.location.origin}/${response.data.data.id}`);
+    const generateSharableLink = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api', {
+                chat: window.localStorage.getItem("GeminiHistory")
+            });
+            // console.log("Link generated : ", response);
+            if (response.data.success) {
+                setSharableLink(`${window.location.origin}/${response.data.data.id}`);
+            }
+
+        } catch (error) {
+            // console.log("ERROR at ShareBox.jsx : ", error);
+        } finally {
+            setLoading(false);
         }
-        
-    } catch (error) {
-        // console.log("ERROR at ShareBox.jsx : ", error);
-    }    
-   }
+    }
 
     return (
         <div className="z-10 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
@@ -46,14 +50,17 @@ export default function ShareBox({ shareLink }) {
                 />
                 {sharableLink ? <button
                     onClick={copyLink}
-                    className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
+                    className="w-full bg-blue-600 disabled:bg-gray-500 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
+                    disabled={loading}
                 >
                     Copy Link
                 </button> : <button
                     onClick={generateSharableLink}
-                    className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
+                    className="w-full bg-blue-600 disabled:bg-gray-500 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
+                    disabled={loading}
                 >
-                    Generate Link
+                    {loading ? "Genegating..." : "Generate Link"}
+
                 </button>}
             </div>
         </div>
