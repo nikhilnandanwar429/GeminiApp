@@ -1,6 +1,7 @@
 # Gemini Chat Application
 
 A full-stack chat application built using Google's Gemini AI API, featuring real-time chat interactions and chat sharing capabilities.
+
 **[Live link](https://ai-by-gemini.netlify.app/)**
 
 ## Project Structure
