@@ -11,7 +11,7 @@ const saveChatToDB = async (req, res) => {
             });
         }
 
-        console.log("Saving chat:", chat);
+        // console.log("Saving chat:", chat);
 
         const response = await Chat.create({
             chat

@@ -15,7 +15,7 @@ export default function SharedChat() {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/${id}`);
                 const chatData = JSON.parse(response.data.chat.chat);
-                console.log('Fetched chat data:', chatData); // Debug log
+                // console.log('Fetched chat data:', chatData); // Debug log
                 setChat(chatData);
                 window.localStorage.setItem("GeminiHistory", JSON.stringify(chatData));
                 setLoading(false);

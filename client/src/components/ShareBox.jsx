@@ -16,13 +16,13 @@ export default function ShareBox({ shareLink }) {
         const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api', {
             chat: window.localStorage.getItem("GeminiHistory")
         });
-        console.log("Link generated : ", response);
+        // console.log("Link generated : ", response);
         if (response.data.success) {
             setSharableLink(`${window.location.origin}/${response.data.data.id}`);
         }
         
     } catch (error) {
-        console.log("ERROR at ShareBox.jsx : ", error);
+        // console.log("ERROR at ShareBox.jsx : ", error);
     }    
    }
 
