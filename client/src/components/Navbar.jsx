@@ -25,17 +25,17 @@ function Navbar() {
                                 <span className="text-2xl font-bold text-white">Chat</span>
                             </div>
                         </div>
-                        <div className="hidden md:block">
+                        <div className="block">
                             <div className="flex items-center space-x-4">
                                 <button
                                     onClick={clearLocalStorage}
-                                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors border border-gray-500"
                                 >
                                     Clear Chat
                                 </button>
                                 <button
                                     onClick={() => setIsShare(true)}
-                                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors border border-gray-500"
                                 >
                                     Share
                                 </button>
