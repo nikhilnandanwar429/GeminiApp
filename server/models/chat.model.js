@@ -1,15 +1,18 @@
 import mongoose from "mongoose";
 
 const ChatSchema = new mongoose.Schema({
-    chat:{
+    chat: {
         type: String,
         required: true
     },
-    createdAt: { type: Date, default: Date.now },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        expires: 604800 // in seconds (7 * 24 * 60 * 60)
+    }
 
 })
 
-ChatSchema.index({ createdAt: 1 }, { expireAfterSeconds: 2592000 }); // 30 days in seconds
 
 
 const Chat = mongoose.model("Chat", ChatSchema);
