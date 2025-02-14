@@ -6,14 +6,7 @@ import SharedChat from './components/SharedChat'
 import { useEffect } from 'react'
 
 function App() {
-  useEffect(async () => {
-    try {
-      const response = await axios.get(import.meta.env.VITE_BACKEND_URL, {
-      });
-    } catch (error) {
-      // console.log("ERROR at ShareBox.jsx : ", error);
-    }
-  }, [])
+
   return (
     <Router>
       <Routes>
