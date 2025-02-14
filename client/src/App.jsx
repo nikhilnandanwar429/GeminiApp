@@ -3,8 +3,17 @@ import './App.css'
 import Navbar from './components/Navbar'
 import ChatBox from './components/ChatBox'
 import SharedChat from './components/SharedChat'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(async () => {
+    try {
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL, {
+      });
+    } catch (error) {
+      // console.log("ERROR at ShareBox.jsx : ", error);
+    }
+  }, [])
   return (
     <Router>
       <Routes>
@@ -19,7 +28,7 @@ function App() {
                 </div>
               </div>
               <div className="md:w-5/6 w-full bg-gray-900">
-                <ChatBox/>
+                <ChatBox />
               </div>
             </div>
           </>
