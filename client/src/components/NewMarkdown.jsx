@@ -24,7 +24,7 @@ const NewMarkdown = ({ content }) => {
 
     return (
         <ReactMarkdown
-        className='markdown-render'
+            className='markdown-render'
             rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]}
             children={content}
@@ -44,9 +44,8 @@ const NewMarkdown = ({ content }) => {
                             <button
                                 aria-label="Copy code to clipboard"
                                 onClick={() => handleCopy(code)}
-                                className={`absolute top-1.5 right-2 text-xs px-3 py-1 rounded bg-[#3b82f6] text-white hover:bg-[#2563eb] transition ${
-                                    copied ? 'bg-green-500 hover:bg-green-600' : ''
-                                }`}
+                                className={`absolute top-1.5 right-2 text-xs px-3 py-1 rounded bg-[#3b82f6] text-white hover:bg-[#2563eb] transition ${copied ? 'bg-green-500 hover:bg-green-600' : ''
+                                    }`}
                             >
                                 Copy
                             </button>

@@ -3,7 +3,7 @@ import Chat from "../models/chat.model.js";
 const saveChatToDB = async (req, res) => {
     try {
         const { chat } = req.body;
-        
+
         if (!chat) {
             return res.status(400).json({
                 success: false,
